@@ -14,16 +14,28 @@ app.get("/api/combine", (req, res)=> {
         name2:"",
         results: []
     }
+    console.log(result)
 
     // extract the query string params 
-
+    result.name1 = req.name1
+    result.name2 = req.name2
 
     // compute combinations 
 
+    // halfway point for each name
+    const name1Halfway = Math.round(result.name1.length / 2)
+    const name2Halfway = Math.round(result.name2.length / 2)
+
+    // the name combinations
+    const combo1 = result.name1 + result.name2
+    const combo2 = result.name1.substring(0, name1Halfway) + result.name2.substring(name2Halfway)
+    const combo3 = result.name2.substring(0, name2Halfway) + result.name1.substring(name1Halfway)
 
     // create array of results
-    result.results.push({id: 1, name:"Johnob", goodness:3.4} )
-
+    // result.results.push({id: 1, name:"Johnob", goodness:3.4} )
+    result.results.push({id: 1, name: combo1, goodness: Math.round((Math.random() * 10), 1)})
+    result.results.push({id: 2, name: combo2, goodness: Math.round((Math.random() * 10), 1)})
+    result.results.push({id: 3, name: combo3, goodness: Math.round((Math.random() * 10), 1)})
 
     // write the results to a file
     const filePath = path.join(__dirname, "/logs/output.log")

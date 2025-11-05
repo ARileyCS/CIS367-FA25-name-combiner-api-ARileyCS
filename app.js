@@ -6,8 +6,9 @@ const PORT = 3000
 
 /* 
 GET: /api/combine?name1=James&name2=Alvin 
+     /api/combine&name1=John&name2=Bob
 */
-app.get("/api/combine", (req, res)=> {
+app.get("/api/combine&name1&name2", (req, res)=> {
 
     let result = {
         name1:"",
@@ -33,9 +34,9 @@ app.get("/api/combine", (req, res)=> {
 
     // create array of results
     // result.results.push({id: 1, name:"Johnob", goodness:3.4} )
-    result.results.push({id: 1, name: combo1, goodness: Math.round((Math.random() * 10), 1)})
-    result.results.push({id: 2, name: combo2, goodness: Math.round((Math.random() * 10), 1)})
-    result.results.push({id: 3, name: combo3, goodness: Math.round((Math.random() * 10), 1)})
+    result.results.push({id: 1, name: combo1, goodness: Math.round(((Math.random() / 2) * 10), 1)})
+    result.results.push({id: 2, name: combo2, goodness: Math.round(((Math.random() / 2) * 10), 1)})
+    result.results.push({id: 3, name: combo3, goodness: Math.round(((Math.random() / 2) * 10), 1)})
 
     // write the results to a file
     const filePath = path.join(__dirname, "/logs/output.log")
